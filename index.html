@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ThumbPro - Premium YouTube Thumbnail Templates</title>
     <style>
-
         * {
             margin: 0;
             padding: 0;
@@ -35,64 +34,54 @@
             color: var(--text-primary);
             line-height: 1.6;
             overflow-x: hidden;
+            padding: 20px;
         }
 
-        /* Navigation */
-        nav {
-            position: sticky;
-            top: 0;
-            background: rgba(15, 15, 20, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            padding: 1rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        #paypal-button-container {
+            margin-top: 30px;
         }
 
-        .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+        h1 {
+            margin-bottom: 10px;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
+        p {
+            margin-bottom: 15px;
         }
+    </style>
+</head>
+<body>
 
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
+    <h1>ThumbPro - Premium YouTube Thumbnail Templates</h1>
+    <p>ادعمنا عبر الدفع باستخدام PayPal:</p>
 
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-            font-weight: 500;
-        }
+    <!-- زر بايبال -->
+    <div id="paypal-button-container"></div>
 
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
+    <!-- سكريبت بايبال -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_CLIENT_ID&currency=USD"></script>
+    <script>
+        paypal.Buttons({
+            createOrder: function(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: '1.00' // المبلغ بالدولار
+                        }
+                    }]
+                });
+            },
+            onApprove: function(data, actions) {
+                return actions.order.capture().then(function(details) {
+                    alert("Payment Successful! شكراً لدعمك.");
+                });
+            }
+        }).render('#paypal-button-container');
+    </script>
 
-        /* Hero Section */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            padding: 4rem 2rem;
-            background: radial-gradient(circle at 50% 50%, rgba(102, 126, 234, 0.1) 0%, transparent 50%);
-        }
+</body>
+</html
+
 
         .hero-content {
             max-width: 800px;
